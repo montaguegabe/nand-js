@@ -1,6 +1,6 @@
 {
   "name": "nand-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Run NAND, NAND++, NAND<< programs from a JS interface",
   "main": "index.js",
   "scripts": {
