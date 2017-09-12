@@ -29,4 +29,5 @@ nand.unsweeten(program, language /* = NAND */);
 ```
 
 ## Building
-Use `npm run build` to build the OCaml into JS via Bucklescript. The repository simply provides a light wrapper over the functions.
+1. The repository https://github.com/juan-esteller/NAND is included as a submodule. Build the submodule first to regenerated ML files.
+2. Use `npm run build` to build the OCaml into JS via Bucklescript. The repository simply provides a light wrapper over the functions.
