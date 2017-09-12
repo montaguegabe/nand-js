@@ -2,9 +2,14 @@
 
 See https://github.com/juan-esteller/NAND for a description of the language and documentation.
 
-## Usage
-Install with `npm install nand-js --save-dev`. Then from your code:
+## Installation
+`npm install nand-js --save`
 
+or else (if you are using with iJavascript notebooks):
+
+`npm install nand-js -g`
+
+## Usage
 ```javascript
 var nand = require('nand-js');
 
@@ -24,4 +29,4 @@ nand.unsweeten(program, language /* = NAND */);
 ```
 
 ## Building
-`npm run build`
+Use `npm run build` to build the OCaml into JS via Bucklescript. The repository simply provides a light wrapper over the functions.
