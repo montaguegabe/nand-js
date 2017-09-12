@@ -1,0 +1,32 @@
+{
+  "name": "nand-js",
+  "version": "1.0.0",
+  "description": "Run NAND, NAND++, NAND<< programs from a JS interface",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/montaguegabe/nand-js.git"
+  },
+  "keywords": [
+    "nand",
+    "language",
+    "cs121",
+    "harvard"
+  ],
+  "author": "Gabe Montague",
+  "bugs": {
+    "url": "https://github.com/montaguegabe/nand-js/issues"
+  },
+  "homepage": "https://github.com/montaguegabe/nand-js#readme",
+  "devDependencies": {
+    "bs-platform": "^1.9.1",
+    "chalk": "^2.1.0",
+    "fs-extra": "^4.0.1",
+    "semver": "^5.4.1",
+    "shelljs": "^0.7.8"
+  }
+}

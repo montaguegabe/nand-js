@@ -1,0 +1,7 @@
+{
+    "name" : "nand",
+    "sources" : {
+        "dir" : "submodules/NAND/nand-pl/_build",
+        "subdirs" : ["src", "parsing"]
+    }
+}

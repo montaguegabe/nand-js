@@ -1,0 +1,3 @@
+[submodule "submodules/NAND"]
+	path = submodules/NAND
+	url = https://github.com/juan-esteller/NAND

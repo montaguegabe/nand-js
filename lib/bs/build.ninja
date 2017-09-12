@@ -1,0 +1,81 @@
+bs_package_flags = -bs-package-name nand
+src_root_dir = /Users/gabemontague/Sites/nand-js
+bsc = /Users/gabemontague/Sites/nand-js/node_modules/bs-platform/bin/bsc.exe
+bsdep = /Users/gabemontague/Sites/nand-js/node_modules/bs-platform/bin/bsb_helper.exe
+bsc_flags = -nostdlib -I '/Users/gabemontague/Sites/nand-js/node_modules/bs-platform/lib/ocaml' -no-alias-deps -color always -w -40+6+7+27+32..39+44+45
+ppx_flags = 
+bs_package_includes = 
+bs_package_dev_includes = 
+refmt = /Users/gabemontague/Sites/nand-js/node_modules/bs-platform/bin/refmt.exe
+reason_react_jsx = 
+refmt_flags = --print binary
+namespace = 
+bsb_dir_group = 0
+bsc_lib_includes = -I submodules/NAND/nand-pl/_build/src -I submodules/NAND/nand-pl/_build/parsing -I submodules/NAND/nand-pl/_build
+rule build_ast_and_module_sets
+  command = ${bsc}  ${pp_flags} ${ppx_flags} ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build submodules/NAND/nand-pl/_build/main.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/main.ml
+rule build_deps
+  command = ${bsdep} ${namespace} -g ${bsb_dir_group} -MD ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build submodules/NAND/nand-pl/_build/main.mlast.d : build_deps submodules/NAND/nand-pl/_build/main.mlast
+rule build_cmj_cmi
+  command = ${bsc} ${bs_package_flags} -bs-assume-no-mli -bs-no-builtin-ppx-ml -bs-no-implicit-include ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes}  ${bsc_flags} -o ${out} -c  ${in} $postbuild
+  depfile = ${in}.d
+  description = [34mBuilding[39m [2m${out}[22m
+build submodules/NAND/nand-pl/_build/main.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/main.js submodules/NAND/nand-pl/_build/main.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/main.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build
+build submodules/NAND/nand-pl/_build/parsing/NANDlexer.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/parsing/NANDlexer.ml
+build submodules/NAND/nand-pl/_build/parsing/NANDlexer.mlast.d : build_deps submodules/NAND/nand-pl/_build/parsing/NANDlexer.mlast
+build submodules/NAND/nand-pl/_build/parsing/NANDlexer.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/parsing/NANDlexer.js submodules/NAND/nand-pl/_build/parsing/NANDlexer.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/parsing/NANDlexer.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/parsing
+build submodules/NAND/nand-pl/_build/parsing/NANDparser.mliast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/parsing/NANDparser.mli
+build submodules/NAND/nand-pl/_build/parsing/NANDparser.mliast.d : build_deps submodules/NAND/nand-pl/_build/parsing/NANDparser.mliast
+rule build_cmi
+  command = ${bsc} ${bs_package_flags} -bs-no-builtin-ppx-mli -bs-no-implicit-include ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes} ${bsc_flags} -o ${out} -c  ${in}
+  depfile = ${in}.d
+  description = [34mBuilding[39m [2m${out}[22m
+build submodules/NAND/nand-pl/_build/parsing/NANDparser.cmi : build_cmi submodules/NAND/nand-pl/_build/parsing/NANDparser.mliast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/parsing
+build submodules/NAND/nand-pl/_build/parsing/NANDparser.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/parsing/NANDparser.ml
+build submodules/NAND/nand-pl/_build/parsing/NANDparser.mlast.d : build_deps submodules/NAND/nand-pl/_build/parsing/NANDparser.mlast
+rule build_cmj_only
+  command = ${bsc} ${bs_package_flags} -bs-assume-has-mli -bs-no-builtin-ppx-ml -bs-no-implicit-include  ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes}  ${bsc_flags} -o ${out} -c  ${in} $postbuild
+  depfile = ${in}.d
+  description = [34mBuilding[39m [2m${out}[22m
+build submodules/NAND/nand-pl/_build/parsing/NANDparser.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/parsing/NANDparser.js : build_cmj_only submodules/NAND/nand-pl/_build/parsing/NANDparser.mlast |  submodules/NAND/nand-pl/_build/parsing/NANDparser.cmi
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/parsing
+build submodules/NAND/nand-pl/_build/src/SS.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/SS.ml
+build submodules/NAND/nand-pl/_build/src/SS.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/SS.mlast
+build submodules/NAND/nand-pl/_build/src/SS.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/SS.js submodules/NAND/nand-pl/_build/src/SS.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/SS.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/flags.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/flags.ml
+build submodules/NAND/nand-pl/_build/src/flags.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/flags.mlast
+build submodules/NAND/nand-pl/_build/src/flags.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/flags.js submodules/NAND/nand-pl/_build/src/flags.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/flags.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/binops.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/binops.ml
+build submodules/NAND/nand-pl/_build/src/binops.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/binops.mlast
+build submodules/NAND/nand-pl/_build/src/binops.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/binops.js submodules/NAND/nand-pl/_build/src/binops.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/binops.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/PL_data.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/PL_data.ml
+build submodules/NAND/nand-pl/_build/src/PL_data.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/PL_data.mlast
+build submodules/NAND/nand-pl/_build/src/PL_data.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/PL_data.js submodules/NAND/nand-pl/_build/src/PL_data.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/PL_data.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/prog_exec.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/prog_exec.ml
+build submodules/NAND/nand-pl/_build/src/prog_exec.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/prog_exec.mlast
+build submodules/NAND/nand-pl/_build/src/prog_exec.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/prog_exec.js submodules/NAND/nand-pl/_build/src/prog_exec.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/prog_exec.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/PL_functor.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/PL_functor.ml
+build submodules/NAND/nand-pl/_build/src/PL_functor.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/PL_functor.mlast
+build submodules/NAND/nand-pl/_build/src/PL_functor.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/PL_functor.js submodules/NAND/nand-pl/_build/src/PL_functor.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/PL_functor.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/PL_modules.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/PL_modules.ml
+build submodules/NAND/nand-pl/_build/src/PL_modules.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/PL_modules.mlast
+build submodules/NAND/nand-pl/_build/src/PL_modules.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/PL_modules.js submodules/NAND/nand-pl/_build/src/PL_modules.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/PL_modules.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build submodules/NAND/nand-pl/_build/src/parse_flags.mlast : build_ast_and_module_sets $src_root_dir/submodules/NAND/nand-pl/_build/src/parse_flags.ml
+build submodules/NAND/nand-pl/_build/src/parse_flags.mlast.d : build_deps submodules/NAND/nand-pl/_build/src/parse_flags.mlast
+build submodules/NAND/nand-pl/_build/src/parse_flags.cmj |  $src_root_dir/lib/js/submodules/NAND/nand-pl/_build/src/parse_flags.js submodules/NAND/nand-pl/_build/src/parse_flags.cmi : build_cmj_cmi submodules/NAND/nand-pl/_build/src/parse_flags.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/submodules/NAND/nand-pl/_build/src
+build build.ninja : phony  ||  submodules/NAND/nand-pl/_build/src/parse_flags.mlast.d submodules/NAND/nand-pl/_build/src/PL_modules.mlast.d submodules/NAND/nand-pl/_build/src/PL_functor.mlast.d submodules/NAND/nand-pl/_build/src/prog_exec.mlast.d submodules/NAND/nand-pl/_build/src/PL_data.mlast.d submodules/NAND/nand-pl/_build/src/binops.mlast.d submodules/NAND/nand-pl/_build/src/flags.mlast.d submodules/NAND/nand-pl/_build/src/SS.mlast.d submodules/NAND/nand-pl/_build/parsing/NANDparser.mlast.d submodules/NAND/nand-pl/_build/parsing/NANDparser.mliast.d submodules/NAND/nand-pl/_build/parsing/NANDlexer.mlast.d submodules/NAND/nand-pl/_build/main.mlast.d

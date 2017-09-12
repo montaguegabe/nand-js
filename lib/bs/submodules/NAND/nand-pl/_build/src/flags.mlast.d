@@ -1,0 +1,1 @@
+submodules/NAND/nand-pl/_build/src/flags.cmj : submodules/NAND/nand-pl/_build/src/PL_data.cmj submodules/NAND/nand-pl/_build/src/PL_functor.cmj submodules/NAND/nand-pl/_build/src/PL_modules.cmj
