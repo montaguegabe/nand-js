@@ -8,8 +8,9 @@ Install with `npm install nand-js --save-dev`. Then from your code:
 ```javascript
 var nand = require('nand-js');
 
-var program = 'y_0 := x_0 NAND x_1\n'
-            + 'y_1 := x_2 NAND x_3';
+var program = 
+`y_0 := x_0 NAND x_1
+ y_1 := x_2 NAND x_3`;
 
 var input = '0111';
 var language = 'NAND++';
