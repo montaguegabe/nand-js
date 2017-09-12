@@ -39,22 +39,8 @@ function unsweetenPrint(program, language) {
 
 function unsweeten(program, language) {
 
-    if (language === undefined) {
-        language = 'NAND';
-    }
-
-    // HACK: We want to return what is printed
-    Printf.bufferCaptureMode(true);
-    Printf.clearBuffer();
-
-    // Run normal function
-    unsweetenPrint(program, language);
-    
-    Printf.bufferCaptureMode(false);
-
-    return Printf.getPrinted();
+    // TODO: Implement
 }
 
 exports.interpret = interpret;
-exports.unsweeten = unsweeten;
-exports.unsweetenPrint = unsweetenPrint;
+exports.unsweeten = unsweetenPrint;
