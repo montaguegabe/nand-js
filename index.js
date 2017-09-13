@@ -1,6 +1,5 @@
 var executeString = require('./lib/js/src/prog_exec.js');
 var flags = require('./dynamicFlags.js');
-var Printf = require('./printf.js');
 
 // Runs a given NAND program on input
 function interpret(program, input, language, sugar) {
@@ -24,7 +23,7 @@ function interpret(program, input, language, sugar) {
 }
 
 // Unsweetens a program
-function unsweetenPrint(program, language) {
+function unsweeten(program, language) {
 
     if (language === undefined) {
         language = 'NAND';
@@ -34,13 +33,8 @@ function unsweetenPrint(program, language) {
     flags.setSugar(true);
     flags.setDry(true);
 
-    executeString.executeString(program, '0');
-}
-
-function unsweeten(program, language) {
-
-    // TODO: Implement
+    return executeString.executeString(program, '0');
 }
 
 exports.interpret = interpret;
-exports.unsweeten = unsweetenPrint;
+exports.unsweeten = unsweeten;

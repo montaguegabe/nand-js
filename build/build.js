@@ -20,8 +20,4 @@ var sources = path.join(bsOutputDir, '*');
 utils.exec(`mv ${sources} ${libDir}`);
 fs.removeSync(path.join(libDir, 'submodules'));
 
-// TODO: Remove
-// Swap printf for our own hook
-// utils.exec("export LANG=C; export LC_CTYPE=C; find ./lib/js/src -type f -print0 | xargs -0 sed -i '' 's/bs-platform\\/lib\\/js\\/printf.js/..\\/..\\/..\\/printf.js/g'");
-
 console.log(chalk.cyan('Build complete.\n'));

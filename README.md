@@ -24,10 +24,11 @@ var syntacticSugar = true;
 var result = nand.interpret(program, input, language /* = 'NAND' */, syntacticSugar /* = true */);
 console.log(result);
 
-// Prints the unsweetened program to the console
-nand.unsweeten(program, language /* = NAND */);
+// Removes syntactic sugar
+var newProgram = nand.unsweeten(program, language /* = NAND */);
+console.log(newProgram);
 ```
 
 ## Building
-1. The repository https://github.com/juan-esteller/NAND is included as a submodule. Build the submodule first to regenerated ML files.
+1. The repository https://github.com/juan-esteller/NAND is included as a submodule. Build the submodule first to regenerate ML files by running `build.bash`.
 2. Use `npm run build` to build the OCaml into JS via Bucklescript. The repository simply provides a light wrapper over the functions.
